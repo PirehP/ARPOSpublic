@@ -2,9 +2,13 @@ import os
 import re
 import pandas as pd
 
+import CommonMethods
+from LoadFaceData import LoadFaceData
 from Configurations import Configurations
 from FileIO import FileIO
+from ProcessParticipantsData import Process_SingalData
 from SQLResults.SQLConfig import SQLConfig
+from GlobalDataFile import GlobalData, WindowProcessedData
 
 """
 Main Class:
@@ -61,7 +65,7 @@ class Main:
                                         self.CaseList.append(fileName)
 
     def CheckIfGenerated(self, fileName):
-        pathExsists = objFile.FileExits(self.objConfig.SavePath + 'Result\\' + 'HRSPOwithLog_' + fileName + ".txt")
+        pathExsists = self.objFileIO.FileExits(self.objConfig.SavePath + 'Result\\' + 'HRSPOwithLog_' + fileName + ".txt")
         # already generated
         if (pathExsists):
             return True
